@@ -1,4 +1,5 @@
 import 'package:busca_cep_app/repository/network/request_state.dart';
+import 'package:busca_cep_app/utils/consts.dart';
 import 'package:busca_cep_app/views/edit_address/edit_address_screen.dart';
 import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:busca_cep_app/views/home/tiles/address_tile.dart';
@@ -47,11 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          if(_homeStore.address == null || _homeStore.address.isEmpty){
+          if (_homeStore.address == null || _homeStore.address.isEmpty) {
             return Center(
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: Text("É novo por aqui? Adicione um novo endereço de entrega agora mesmo.", textAlign: TextAlign.center,),
+                child: Text(
+                  "É novo por aqui? Adicione um novo endereço de entrega agora mesmo.",
+                  textAlign: TextAlign.center,
+                ),
               ),
             );
           }
@@ -61,7 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 .map((address) => AddressTile(
                       address: address,
                     ))
-                .toList(),
+                .toList()
+                .sublist(0, MAX_CEPS),
           );
         },
       ),

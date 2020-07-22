@@ -1,4 +1,5 @@
 import 'package:busca_cep_app/models/address_model.dart';
+import 'package:busca_cep_app/utils/consts.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -102,7 +103,9 @@ class AddressHelper {
 
   Future<List> getAllAddress() async {
     Database dbAddress = await db;
-    List listMap = await dbAddress.rawQuery("SELECT * FROM $addressTable");
+    List listMap = await dbAddress.rawQuery(
+        "SELECT * FROM $addressTable ORDER BY $createdAtColumn DESC LIMIT $MAX_CEPS");
+//    LIMIT $MAX_CEPS
     List<Address> listAddress = List();
     for (Map m in listMap) {
       listAddress.add(Address.fromJson(m));
