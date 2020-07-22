@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 class ErrorView extends StatelessWidget {
   final RequestState requestState;
   final VoidCallback onTryAgain;
+  final String textButtonTryAgain;
 
   const ErrorView(
-      {Key key, @required this.requestState, @required this.onTryAgain})
+      {Key key,
+      @required this.requestState,
+      @required this.onTryAgain,
+      this.textButtonTryAgain})
       : super(key: key);
 
   @override
@@ -33,7 +37,7 @@ class ErrorView extends StatelessWidget {
             height: 16,
           ),
           RaisedButton(
-            child: Text("Tentar novamente"),
+            child: Text(textButtonTryAgain ?? "Tentar novamente"),
             onPressed: onTryAgain,
           )
         ],

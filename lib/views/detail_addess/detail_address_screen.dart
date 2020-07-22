@@ -42,9 +42,18 @@ class _DetailAddressScreenState extends State<DetailAddressScreen> {
           if (isError(_detailAddressStore.stateGetAddressFromZip)) {
             return ErrorView(
               requestState: _detailAddressStore.stateGetAddressFromZip,
-              onTryAgain: () {
-                _detailAddressStore.getAddressFromZip(widget.address.cep);
-              },
+              textButtonTryAgain: _detailAddressStore.stateGetAddressFromZip ==
+                      RequestState.ZIP_NOT_EXISTS
+                  ? "Voltar"
+                  : null,
+              onTryAgain: _detailAddressStore.stateGetAddressFromZip ==
+                      RequestState.ZIP_NOT_EXISTS
+                  ? () {
+                      Navigator.pop(context);
+                    }
+                  : () {
+                      _detailAddressStore.getAddressFromZip(widget.address.cep);
+                    },
             );
           }
           return ListView(
