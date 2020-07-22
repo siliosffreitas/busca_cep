@@ -2,6 +2,7 @@ import 'package:busca_cep_app/models/address_model.dart';
 import 'package:busca_cep_app/repository/network/request_state.dart';
 import 'package:busca_cep_app/views/detail_addess/detail_address_store.dart';
 import 'package:busca_cep_app/views/detail_addess/tiles/field_address_tile.dart';
+import 'package:busca_cep_app/views/shared/error_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -39,35 +40,11 @@ class _DetailAddressScreenState extends State<DetailAddressScreen> {
             );
           }
           if (isError(_detailAddressStore.stateGetAddressFromZip)) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    titleRequest(_detailAddressStore.stateGetAddressFromZip),
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    contentError(_detailAddressStore.stateGetAddressFromZip),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  RaisedButton(
-                    child: Text("Tentar novamente"),
-                    onPressed: () {
-                      _detailAddressStore.getAddressFromZip(widget.address.cep);
-                    },
-                  )
-                ],
-              ),
+            return ErrorView(
+              requestState: _detailAddressStore.stateGetAddressFromZip,
+              onTryAgain: () {
+                _detailAddressStore.getAddressFromZip(widget.address.cep);
+              },
             );
           }
           return ListView(
