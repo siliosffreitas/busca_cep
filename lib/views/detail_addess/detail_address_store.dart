@@ -29,7 +29,6 @@ abstract class _DetailAddressStore with Store {
       stateGetAddressFromZip = RequestState.SUCCESS;
       address = response.result;
     }).catchError((error) {
-      print(error.error.runtimeType);
       if (error.error is NoConnectionWithServerException) {
         stateGetAddressFromZip = RequestState.NO_CONNECTION_WITH_SERVER;
       } else if (error.error is NoConnectionException) {
