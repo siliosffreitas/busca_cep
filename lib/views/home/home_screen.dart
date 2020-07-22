@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:busca_cep_app/repository/network/request_state.dart';
 import 'package:busca_cep_app/utils/consts.dart';
 import 'package:busca_cep_app/views/edit_address/edit_address_screen.dart';
@@ -66,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       address: address,
                     ))
                 .toList()
-                .sublist(0, MAX_CEPS),
+                .sublist(0, min(MAX_CEPS, _homeStore.address.length)),
           );
         },
       ),
