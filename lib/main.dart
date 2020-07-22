@@ -1,3 +1,4 @@
+import 'package:busca_cep_app/repository/network/api.dart';
 import 'package:busca_cep_app/views/home/home_screen.dart';
 import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ void main() {
 
 void _registrarDependencias() {
   GetIt.instance.registerSingleton<HomeStore>(HomeStore());
+  GetIt.instance.registerSingleton<Api>(Api());
 }
 
 class MyApp extends StatelessWidget {

@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
           return ListView(
+            padding: const EdgeInsets.all(16),
             children: _homeStore.address
                 .map((address) => AddressTile(
                       address: address,

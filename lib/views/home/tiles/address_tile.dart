@@ -1,5 +1,6 @@
 import 'package:busca_cep_app/models/address_model.dart';
 import 'package:busca_cep_app/utils/utils.dart';
+import 'package:busca_cep_app/views/detail_addess/detail_address_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddressTile extends StatelessWidget {
@@ -14,6 +15,14 @@ class AddressTile extends StatelessWidget {
         title: Text(address.cep),
         subtitle: Text(formatDate_ddMMyyyyHHmm_Human(
             address.createdAt.millisecondsSinceEpoch)),
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailAddressScreen(address: address,),
+              ),
+          );
+        },
       ),
     );
   }
