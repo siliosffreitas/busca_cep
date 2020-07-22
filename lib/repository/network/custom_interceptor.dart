@@ -45,14 +45,10 @@ class CustomInterceptor extends InterceptorsWrapper {
     print(response.request.path);
     print("===========================================================");
 
-//    if (![DEVICE].contains(response.request.path)) {
-//      _loaderController.turnOffLoader();
-//    }
-
     if (response.data['erro'] != null && response.data['erro']) {
-      print("CEP n existe");
-//      throw ZipNotExistsException();
-      throw CustomException("CEP n existe");
+//      print("CEP n existe");
+      // não encontrou o cep
+      throw ZipNotExistsException();
     }
     return super.onResponse(response);
   }
@@ -61,6 +57,11 @@ class CustomInterceptor extends InterceptorsWrapper {
   Future onError(DioError err) async {
     print("======================= ON_ERROR =======================");
     print(err.request.path);
+
+    if (err.error is ZipNotExistsException) {
+      // se tiver dado erro de cep nao encontrado, trata logo
+      throw ZipNotExistsException();
+    }
 
     try {
       bool conected = await DataConnectionChecker().hasConnection;
