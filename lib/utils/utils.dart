@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-
-
-
+bool isNumeric(String s) {
+  if (s == null) {
+    return false;
+  }
+  return double.parse(s, (e) => null) != null;
+}
 
 /**
  * Oculta o teclado
@@ -76,8 +79,6 @@ formatDate_ddMMyyyyHHmm(int millisecondsSinceEpoch) {
   return DateFormat('dd/MM/yyyy kk:mm').format(date);
 }
 
-
-
 void messageError(context,
     {String message =
         "Algum erro ocorreu. Verifique sua internet e tente novamente mais tarde.",
@@ -102,6 +103,3 @@ void messageError(context,
           ),
       barrierDismissible: dismissible);
 }
-
-
-

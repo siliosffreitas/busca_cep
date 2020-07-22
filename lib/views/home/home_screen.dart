@@ -1,4 +1,5 @@
 import 'package:busca_cep_app/repository/network/request_state.dart';
+import 'package:busca_cep_app/views/edit_address/edit_address_screen.dart';
 import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:busca_cep_app/views/home/tiles/address_tile.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Últimos endereços'),
+        actions: <Widget>[
+          IconButton(
+            tooltip: "Novo Endereço",
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditAddressScreen(),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: Observer(
         builder: (_) {
