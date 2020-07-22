@@ -29,14 +29,6 @@ abstract class _DetailAddressStore with Store {
     _api.zipDetail(address.cep).then((response) {
       stateGetAddressFromZip = RequestState.SUCCESS;
       this.address = response.result;
-
-      if(address.uf == null){
-        final _homeStore = GetIt.instance<HomeStore>();
-        this.address.id = address.id;
-        _homeStore.updateAddress(this.address);
-      }
-
-
     }).catchError((error) {
       if (error.error is NoConnectionWithServerException) {
         stateGetAddressFromZip = RequestState.NO_CONNECTION_WITH_SERVER;

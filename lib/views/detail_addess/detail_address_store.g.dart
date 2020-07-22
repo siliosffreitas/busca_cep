@@ -45,11 +45,11 @@ mixin _$DetailAddressStore on _DetailAddressStore, Store {
       ActionController(name: '_DetailAddressStore');
 
   @override
-  dynamic getAddressFromZip(String zip) {
+  dynamic getAddressFromZip(Address address) {
     final _$actionInfo = _$_DetailAddressStoreActionController.startAction(
         name: '_DetailAddressStore.getAddressFromZip');
     try {
-      return super.getAddressFromZip(zip);
+      return super.getAddressFromZip(address);
     } finally {
       _$_DetailAddressStoreActionController.endAction(_$actionInfo);
     }

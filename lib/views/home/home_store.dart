@@ -52,21 +52,6 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  updateAddress(Address address) {
-    stateGetSaveAddress = RequestState.LOADING;
-
-    AddressHelper helper = AddressHelper();
-
-    helper.updateAddress(address).then((result) {
-
-//      this.address.wheadd(address);
-//      this.address.sort((a, b) => a.compareTo(b));
-      this.address = this.address;
-      stateGetSaveAddress = RequestState.SUCCESS;
-    });
-  }
-
-  @action
   resetStateSave() {
     stateGetSaveAddress = null;
   }
