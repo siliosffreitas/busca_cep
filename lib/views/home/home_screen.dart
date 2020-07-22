@@ -47,6 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          if(_homeStore.address == null || _homeStore.address.isEmpty){
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text("É novo por aqui? Adicione um novo endereço de entrega agora mesmo.", textAlign: TextAlign.center,),
+              ),
+            );
+          }
           return ListView(
             children: _homeStore.address
                 .map((address) => AddressTile(

@@ -1,6 +1,11 @@
+import 'package:busca_cep_app/repository/network/request_state.dart';
 import 'package:busca_cep_app/utils/input_mask.dart';
 import 'package:busca_cep_app/utils/utils.dart';
+import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mobx/mobx.dart';
 
 class EditAddressScreen extends StatefulWidget {
   @override
@@ -10,6 +15,16 @@ class EditAddressScreen extends StatefulWidget {
 class _EditAddressScreenState extends State<EditAddressScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _titleController = TextEditingController();
+
+  final _homeStore = GetIt.instance<HomeStore>();
+
+  ReactionDisposer _listen;
+
+  @override
+  void initState() {
+    super.initState();
+    _listen = _listenFunction();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +73,20 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _checkData,
-        child: Icon(Icons.done),
-        tooltip: "Adicionar este endereço",
+      floatingActionButton: Observer(
+        builder: (_) {
+          return FloatingActionButton(
+            onPressed: _homeStore.stateGetSaveAddress == RequestState.LOADING
+                ? null
+                : _checkData,
+            child: _homeStore.stateGetSaveAddress == RequestState.LOADING
+                ? CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  )
+                : Icon(Icons.done),
+            tooltip: "Adicionar este endereço",
+          );
+        },
       ),
     );
   }
@@ -69,7 +94,35 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
   _checkData() {
     hideSoftKeyboard(context);
     if (_formKey.currentState.validate()) {
+      _homeStore.addAddress(_titleController.text);
 //      Navigator.pop(context);
     }
+  }
+
+  ReactionDisposer _listenFunction() {
+    return autorun((_) {
+      switch (_homeStore.stateGetSaveAddress) {
+        case RequestState.SUCCESS:
+          print("Endereço cadastrado com sucesso");
+          Navigator.of(context).pop("Endereço cadastrado com sucesso");
+//          Navigator.pop(context, "Endereço cadastrado com sucesso");
+
+          break;
+        case RequestState.FAIL:
+        case RequestState.TIMEOUT:
+        case RequestState.NO_CONNECTION:
+        case RequestState.NO_CONNECTION_WITH_SERVER:
+          messageError(context);
+          break;
+        default:
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _homeStore.resetStateSave();
+    _listen();
+    super.dispose();
   }
 }

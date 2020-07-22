@@ -25,6 +25,22 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$stateGetSaveAddressAtom =
+      Atom(name: '_HomeStore.stateGetSaveAddress');
+
+  @override
+  RequestState get stateGetSaveAddress {
+    _$stateGetSaveAddressAtom.reportRead();
+    return super.stateGetSaveAddress;
+  }
+
+  @override
+  set stateGetSaveAddress(RequestState value) {
+    _$stateGetSaveAddressAtom.reportWrite(value, super.stateGetSaveAddress, () {
+      super.stateGetSaveAddress = value;
+    });
+  }
+
   final _$addressAtom = Atom(name: '_HomeStore.address');
 
   @override
@@ -65,9 +81,21 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
+  dynamic resetStateSave() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.resetStateSave');
+    try {
+      return super.resetStateSave();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateGetListAddress: ${stateGetListAddress},
+stateGetSaveAddress: ${stateGetSaveAddress},
 address: ${address}
     ''';
   }
