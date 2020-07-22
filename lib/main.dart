@@ -1,8 +1,15 @@
 import 'package:busca_cep_app/views/home/home_screen.dart';
+import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 void main() {
+  _registrarDependencias();
   runApp(MyApp());
+}
+
+void _registrarDependencias() {
+  GetIt.instance.registerSingleton<HomeStore>(HomeStore());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +25,4 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
     );
   }
-}
-
-
 }
