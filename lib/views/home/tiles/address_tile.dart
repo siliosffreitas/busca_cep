@@ -13,14 +13,20 @@ class AddressTile extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(address.cep),
-        subtitle: Text(formatDate_ddMMyyyyHHmm_Human(
-            address.createdAt.millisecondsSinceEpoch)),
-        onTap: (){
+        subtitle: Text(
+          "Cadastro: ${formatDate_ddMMyyyyHHmm_Human(address.createdAt.millisecondsSinceEpoch)}",
+          style: TextStyle(
+            fontStyle: FontStyle.italic
+          ),
+        ),
+        onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailAddressScreen(address: address,),
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailAddressScreen(
+                address: address,
               ),
+            ),
           );
         },
       ),
