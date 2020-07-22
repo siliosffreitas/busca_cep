@@ -5,6 +5,7 @@ import 'package:busca_cep_app/repository/network/exceptions/no_connection_with_s
 import 'package:busca_cep_app/repository/network/exceptions/timeout_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/zip_not_exists_exception.dart';
 import 'package:busca_cep_app/repository/network/request_state.dart';
+import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
@@ -20,14 +21,22 @@ abstract class _DetailAddressStore with Store {
   Address address;
 
   @action
-  getAddressFromZip(String zip) {
+  getAddressFromZip(Address address) {
     stateGetAddressFromZip = RequestState.LOADING;
 
     final _api = GetIt.instance<Api>();
 
-    _api.zipDetail(zip).then((response) {
+    _api.zipDetail(address.cep).then((response) {
       stateGetAddressFromZip = RequestState.SUCCESS;
-      address = response.result;
+      this.address = response.result;
+
+      if(address.uf == null){
+        final _homeStore = GetIt.instance<HomeStore>();
+        this.address.id = address.id;
+        _homeStore.updateAddress(this.address);
+      }
+
+
     }).catchError((error) {
       if (error.error is NoConnectionWithServerException) {
         stateGetAddressFromZip = RequestState.NO_CONNECTION_WITH_SERVER;

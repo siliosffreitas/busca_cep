@@ -18,6 +18,9 @@ abstract class _HomeStore with Store {
   @observable
   List<Address> address;
 
+  @observable
+  Address editAdress;
+
   @action
   getLastsAddress() {
     stateGetListAddress = RequestState.LOADING;
@@ -40,8 +43,24 @@ abstract class _HomeStore with Store {
     AddressHelper helper = AddressHelper();
 
     helper.saveAddress(address).then((address) {
+      editAdress = address;
       this.address.add(address);
       this.address.sort((a, b) => a.compareTo(b));
+      this.address = this.address;
+      stateGetSaveAddress = RequestState.SUCCESS;
+    });
+  }
+
+  @action
+  updateAddress(Address address) {
+    stateGetSaveAddress = RequestState.LOADING;
+
+    AddressHelper helper = AddressHelper();
+
+    helper.updateAddress(address).then((result) {
+
+//      this.address.wheadd(address);
+//      this.address.sort((a, b) => a.compareTo(b));
       this.address = this.address;
       stateGetSaveAddress = RequestState.SUCCESS;
     });

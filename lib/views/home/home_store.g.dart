@@ -56,6 +56,21 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$editAdressAtom = Atom(name: '_HomeStore.editAdress');
+
+  @override
+  Address get editAdress {
+    _$editAdressAtom.reportRead();
+    return super.editAdress;
+  }
+
+  @override
+  set editAdress(Address value) {
+    _$editAdressAtom.reportWrite(value, super.editAdress, () {
+      super.editAdress = value;
+    });
+  }
+
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
@@ -81,6 +96,17 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
+  dynamic updateAddress(Address address) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.updateAddress');
+    try {
+      return super.updateAddress(address);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic resetStateSave() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.resetStateSave');
@@ -96,7 +122,8 @@ mixin _$HomeStore on _HomeStore, Store {
     return '''
 stateGetListAddress: ${stateGetListAddress},
 stateGetSaveAddress: ${stateGetSaveAddress},
-address: ${address}
+address: ${address},
+editAdress: ${editAdress}
     ''';
   }
 }

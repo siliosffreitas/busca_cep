@@ -22,7 +22,7 @@ class _DetailAddressScreenState extends State<DetailAddressScreen> {
   @override
   void initState() {
     super.initState();
-    _detailAddressStore.getAddressFromZip(widget.address.cep);
+    _detailAddressStore.getAddressFromZip(widget.address);
   }
 
   @override
@@ -52,7 +52,7 @@ class _DetailAddressScreenState extends State<DetailAddressScreen> {
                       Navigator.pop(context);
                     }
                   : () {
-                      _detailAddressStore.getAddressFromZip(widget.address.cep);
+                      _detailAddressStore.getAddressFromZip(widget.address);
                     },
             );
           }

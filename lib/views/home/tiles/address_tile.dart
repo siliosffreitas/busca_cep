@@ -13,11 +13,15 @@ class AddressTile extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(address.cep),
-        subtitle: Text(
-          "Cadastro: ${formatDate_ddMMyyyyHHmm_Human(address.createdAt.millisecondsSinceEpoch)}",
-          style: TextStyle(
-            fontStyle: FontStyle.italic
-          ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(_montarEndereco()),
+            Text(
+              "Cadastro: ${formatDate_ddMMyyyyHHmm_Human(address.createdAt.millisecondsSinceEpoch)}",
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ],
         ),
         onTap: () {
           Navigator.push(
@@ -31,5 +35,31 @@ class AddressTile extends StatelessWidget {
         },
       ),
     );
+  }
+
+  _montarEndereco() {
+    String endereco = "";
+
+    if (address.uf != null) {
+      endereco = address.uf;
+    }
+
+    if (address.localidade != null) {
+      if (endereco.isNotEmpty) {
+        endereco = "• $endereco";
+      }
+      endereco = "${address.localidade} $endereco";
+    }
+
+    if (address.bairro != null) {
+      if (endereco.isNotEmpty) {
+        endereco = "• $endereco";
+      }
+      endereco = "${address.bairro} $endereco";
+    }
+
+    if (endereco.isEmpty) return "-";
+
+    return endereco;
   }
 }

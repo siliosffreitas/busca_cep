@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
+import 'package:toast/toast.dart';
 
 class EditAddressScreen extends StatefulWidget {
   @override
@@ -106,12 +107,13 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
       switch (_homeStore.stateGetSaveAddress) {
         case RequestState.SUCCESS:
 //          Navigator.of(context).pop("Endereço cadastrado com sucesso");
+        Toast.show("Endereço cadastrado com sucesso", context);
 
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => DetailAddressScreen(
-                address: Address(cep: _titleController.text),
+                address: _homeStore.editAdress,
               ),
             ),
           );
