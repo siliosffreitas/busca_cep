@@ -54,6 +54,17 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
+  dynamic addAddress(String cep) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.addAddress');
+    try {
+      return super.addAddress(cep);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateGetListAddress: ${stateGetListAddress},

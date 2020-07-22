@@ -8,17 +8,19 @@ class Address {
   String unidade;
   String ibge;
   String gia;
+  DateTime createdAt;
 
   Address(
       {this.cep,
-        this.logradouro,
-        this.complemento,
-        this.bairro,
-        this.localidade,
-        this.uf,
-        this.unidade,
-        this.ibge,
-        this.gia});
+      this.logradouro,
+      this.complemento,
+      this.bairro,
+      this.localidade,
+      this.uf,
+      this.unidade,
+      this.ibge,
+      this.gia,
+      this.createdAt});
 
   Address.fromJson(Map<String, dynamic> json) {
     cep = json['cep'];
@@ -30,6 +32,8 @@ class Address {
     unidade = json['unidade'];
     ibge = json['ibge'];
     gia = json['gia'];
+    createdAt = json['createdAt'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -44,5 +48,9 @@ class Address {
     data['ibge'] = this.ibge;
     data['gia'] = this.gia;
     return data;
+  }
+
+  int compareTo(Address b) {
+    return createdAt.compareTo(b.createdAt);
   }
 }

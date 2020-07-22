@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   mobx: ^1.2.1+1
   flutter_mobx: ^1.1.0+1
   get_it: ^4.0.2

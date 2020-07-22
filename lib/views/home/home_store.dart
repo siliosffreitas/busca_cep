@@ -10,6 +10,7 @@ abstract class _HomeStore with Store {
   @observable
   RequestState stateGetListAddress;
 
+  // TODO testar armazenamento usando um map com a chave sendo a string do cep e o valor sendo o address
   @observable
   List<Address> address;
 
@@ -28,11 +29,19 @@ abstract class _HomeStore with Store {
           "uf": "SP",
           "unidade": "",
           "ibge": "3550308",
-          "gia": "1004"
+          "gia": "1004",
+          "createdAt": DateTime.now()
         }),
+
       );
+      Future.delayed(Duration(seconds: 5));
     }
-    address = address.sublist(0, 6);
+    address = address.sublist(0, 5);
     stateGetListAddress = RequestState.SUCCESS;
+  }
+
+  @action
+  addAddress(String cep) {
+    address.add(Address(cep: cep, createdAt: DateTime.now()));
   }
 }
