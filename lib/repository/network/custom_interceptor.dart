@@ -5,6 +5,7 @@ import 'package:busca_cep_app/repository/network/exceptions/custom_exception.dar
 import 'package:busca_cep_app/repository/network/exceptions/no_connection_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/no_connection_with_server_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/timeout_exception.dart';
+import 'package:busca_cep_app/repository/network/exceptions/zip_not_exists_exception.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -49,7 +50,9 @@ class CustomInterceptor extends InterceptorsWrapper {
 //    }
 
     if (response.data['erro'] != null && response.data['erro']) {
-      throw CustomException("Impossível encontrar este CEP");
+      print("CEP n existe");
+//      throw ZipNotExistsException();
+      throw CustomException("CEP n existe");
     }
     return super.onResponse(response);
   }
