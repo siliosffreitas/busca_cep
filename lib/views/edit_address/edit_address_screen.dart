@@ -1,6 +1,8 @@
+import 'package:busca_cep_app/models/address_model.dart';
 import 'package:busca_cep_app/repository/network/request_state.dart';
 import 'package:busca_cep_app/utils/input_mask.dart';
 import 'package:busca_cep_app/utils/utils.dart';
+import 'package:busca_cep_app/views/detail_addess/detail_address_screen.dart';
 import 'package:busca_cep_app/views/home/home_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -103,9 +105,16 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
     return autorun((_) {
       switch (_homeStore.stateGetSaveAddress) {
         case RequestState.SUCCESS:
-          print("Endereço cadastrado com sucesso");
-          Navigator.of(context).pop("Endereço cadastrado com sucesso");
-//          Navigator.pop(context, "Endereço cadastrado com sucesso");
+//          Navigator.of(context).pop("Endereço cadastrado com sucesso");
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailAddressScreen(
+                address: Address(cep: _titleController.text),
+              ),
+            ),
+          );
 
           break;
         case RequestState.FAIL:
