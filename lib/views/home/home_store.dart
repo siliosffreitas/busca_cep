@@ -26,6 +26,7 @@ abstract class _HomeStore with Store {
     helper.getAllAddress().then((list) {
 //      print(list);
       address = list;
+      this.address.sort((a, b) => a.compareTo(b));
       stateGetListAddress = RequestState.SUCCESS;
     });
   }
@@ -40,6 +41,7 @@ abstract class _HomeStore with Store {
 
     helper.saveAddress(address).then((address) {
       this.address.add(address);
+      this.address.sort((a, b) => a.compareTo(b));
       this.address = this.address;
       stateGetSaveAddress = RequestState.SUCCESS;
     });

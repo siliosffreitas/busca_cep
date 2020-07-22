@@ -61,7 +61,7 @@ class Address {
   }
 
   int compareTo(Address b) {
-    return createdAt.compareTo(b.createdAt);
+    return b.createdAt.compareTo(createdAt);
   }
 
   @override
