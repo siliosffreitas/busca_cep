@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:busca_cep_app/repository/network/exceptions/custom_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/no_connection_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/no_connection_with_server_exception.dart';
 import 'package:busca_cep_app/repository/network/exceptions/timeout_exception.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-
 
 class CustomInterceptor extends InterceptorsWrapper {
   final Dio dio;
@@ -40,16 +40,19 @@ class CustomInterceptor extends InterceptorsWrapper {
     print(response.request.headers);
     print(response.request.data);
     print("RESPOSTA ====> $response");
+
     print(response.request.path);
     print("===========================================================");
 
 //    if (![DEVICE].contains(response.request.path)) {
 //      _loaderController.turnOffLoader();
 //    }
+
+    if (response.data['erro'] != null && response.data['erro']) {
+      throw CustomException("Impossível encontrar este CEP");
+    }
     return super.onResponse(response);
   }
-
-
 
   @override
   Future onError(DioError err) async {
@@ -85,7 +88,4 @@ class CustomInterceptor extends InterceptorsWrapper {
     }
     return super.onError(err);
   }
-
-
-
 }
