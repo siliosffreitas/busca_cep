@@ -1,4 +1,5 @@
 import 'package:busca_cep_app/models/address_model.dart';
+import 'package:busca_cep_app/repository/local/address_helper.dart';
 import 'package:busca_cep_app/repository/network/request_state.dart';
 import 'package:mobx/mobx.dart';
 
@@ -20,36 +21,28 @@ abstract class _HomeStore with Store {
   @action
   getLastsAddress() {
     stateGetListAddress = RequestState.LOADING;
+    AddressHelper helper = AddressHelper();
     address = [];
-//    for (int i = 0; i < 10; i++) {
-//      address.add(
-//        Address.fromJson({
-//          "cep": "01001-000",
-//          "logradouro": "Praça da Sé",
-//          "complemento": "lado ímpar",
-//          "bairro": "Sé",
-//          "localidade": "São Paulo",
-//          "uf": "SP",
-//          "unidade": "",
-//          "ibge": "3550308",
-//          "gia": "1004",
-//          "createdAt": DateTime.now()
-//        }),
-//
-//      );
-//      Future.delayed(Duration(seconds: 5));
-//    }
-//    address = address.sublist(0, 5);
-    stateGetListAddress = RequestState.SUCCESS;
+    helper.getAllAddress().then((list) {
+//      print(list);
+      address = list;
+      stateGetListAddress = RequestState.SUCCESS;
+    });
   }
 
   @action
   addAddress(String cep) {
     stateGetSaveAddress = RequestState.LOADING;
-    address.add(Address(cep: cep, createdAt: DateTime.now()));
 
-    address = address;
-    stateGetSaveAddress = RequestState.SUCCESS;
+    Address address = Address(cep: cep, createdAt: DateTime.now());
+
+    AddressHelper helper = AddressHelper();
+
+    helper.saveAddress(address).then((address) {
+      this.address.add(address);
+      this.address = this.address;
+      stateGetSaveAddress = RequestState.SUCCESS;
+    });
   }
 
   @action

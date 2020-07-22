@@ -9,6 +9,7 @@ class Address {
   String ibge;
   String gia;
   DateTime createdAt;
+  int id;
 
   Address(
       {this.cep,
@@ -20,9 +21,11 @@ class Address {
       this.unidade,
       this.ibge,
       this.gia,
-      this.createdAt});
+      this.createdAt,
+      this.id});
 
   Address.fromJson(Map<String, dynamic> json) {
+    id = json['id'] ?? null;
     cep = json['cep'];
     logradouro = json['logradouro'];
     complemento = json['complemento'];
@@ -32,8 +35,8 @@ class Address {
     unidade = json['unidade'];
     ibge = json['ibge'];
     gia = json['gia'];
-    createdAt = json['createdAt'];
-
+    createdAt =
+        json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -47,10 +50,22 @@ class Address {
     data['unidade'] = this.unidade;
     data['ibge'] = this.ibge;
     data['gia'] = this.gia;
+    if (this.createdAt != null) {
+      data['createdAt'] = this.createdAt.toString();
+    }
+    if (id != null) {
+      data['id'] = this.id;
+    }
+
     return data;
   }
 
   int compareTo(Address b) {
     return createdAt.compareTo(b.createdAt);
+  }
+
+  @override
+  String toString() {
+    return "Address(id $id, cep: $cep, createdAt: $createdAt)";
   }
 }
