@@ -96,17 +96,6 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  dynamic updateAddress(Address address) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.updateAddress');
-    try {
-      return super.updateAddress(address);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic resetStateSave() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.resetStateSave');
