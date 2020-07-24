@@ -1,4 +1,3 @@
-
 import 'package:busca_cep_app/models/address_model.dart';
 import 'package:busca_cep_app/repository/network/api.dart';
 import 'package:busca_cep_app/repository/network/api_response.dart';
@@ -24,35 +23,34 @@ void main() {
 
     testWidgets(
         'quando clica para adicionar um cep e nao tem nenhum cep digitado',
-            (tester) async {
-          await tester.pumpWidget(MaterialApp(
-              home: DetailAddressScreen(
-                address: Address(cep: "64010-000"),
-              )));
+        (tester) async {
+      await tester.pumpWidget(MaterialApp(
+          home: DetailAddressScreen(
+        address: Address(cep: "64010-000"),
+      )));
 
-          when(mockApi.zipDetail('64010270')).thenAnswer((_) async {
-            final response = {
-              "cep": "64010-000",
-              "logradouro": "Conjunto Ribeiro Magalhães",
-              "complemento": "",
-              "bairro": "Mocambinho",
-              "localidade": "Teresina",
-              "uf": "PI",
-              "unidade": "",
-              "ibge": "2211001",
-              "gia": ""
-            };
+      when(mockApi.zipDetail('64010270')).thenAnswer((_) async {
+        final response = {
+          "cep": "64010-000",
+          "logradouro": "Conjunto Ribeiro Magalhães",
+          "complemento": "",
+          "bairro": "Mocambinho",
+          "localidade": "Teresina",
+          "uf": "PI",
+          "unidade": "",
+          "ibge": "2211001",
+          "gia": ""
+        };
 
-            Address address = Address.fromJson(response);
-            return ApiResponse.success(result: address);
-          });
+        Address address = Address.fromJson(response);
+        return ApiResponse.success(result: address);
+      });
 
-          await tester.pump();
-          await tester.pump();
-          await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump();
+      await tester.pumpAndSettle();
 
-
-          expect(find.bySemanticsLabel("UF"), findsNothing);
-        });
+      expect(find.bySemanticsLabel("UF"), findsNothing);
+    });
   });
 }
