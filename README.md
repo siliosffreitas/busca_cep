@@ -19,5 +19,5 @@ samples, guidance on mobile development, and a full API reference.
   <img src="/screenshots/APP1.PNG" width="200" title="Splash"/>
   <img src="/screenshots/APP2.PNG" width="200" title="Endereços já cadastrados"/> 
   <img src="/screenshots/APP3.PNG" width="200" title="Visualização dos dados de um CEP"/>
-  <img src="/screenshots/APP4.PNG" width="200" title="Adicionando um endereço através do CEP"/>
+  <img src="/screenshots/APP4.jpeg" width="200" title="Adicionando um endereço através do CEP"/>
 </p>
