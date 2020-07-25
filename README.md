@@ -23,10 +23,10 @@ Principais telas
 
 Telas de fluxo alternativo
 <p float="left">
-  <img src="/screenshots/APP1.PNG" width="200" title="Splash"/>
-  <img src="/screenshots/APP2.PNG" width="200" title="Endereços já cadastrados"/> 
-  <img src="/screenshots/APP3.PNG" width="200" title="Visualização dos dados de um CEP"/>
-  <img src="/screenshots/APP4.jpeg" width="200" title="Adicionando um endereço através do CEP"/>
+  <img src="/screenshots/APP5.PNG" width="200" title="Inicialmente o usuário não possui nenhum endereço cadastrado"/>
+  <img src="/screenshots/APP6.PNG" width="200" title="Nenhum endereço encontrado para o CEP informado"/> 
+  <img src="/screenshots/APP7.PNG" width="200" title="Alguns fluxos alternativos são cobertos pelo app, dentre eles Timeout, sem conexão com a internet e sem conexão com o servidor"/>
+  <img src="/screenshots/APP4.jpeg" width="200" title="Antes de cadastrar um CEP é verificado inicialmente a sua vailidade"/>
 </p>
 
 ## Setup
