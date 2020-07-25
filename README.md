@@ -1,6 +1,6 @@
 # busca_cep_app
 
-Buscador de CEP
+Buscador de CEP em Flutter
 
 ## Getting Started
 
