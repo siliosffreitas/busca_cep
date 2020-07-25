@@ -4,7 +4,9 @@ Buscador de CEP
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Este projeto busca endereços através dos CEPs cadastrados 
+
+
 
 A few resources to get you started if this is your first Flutter project:
 
@@ -21,3 +23,8 @@ samples, guidance on mobile development, and a full API reference.
   <img src="/screenshots/APP3.PNG" width="200" title="Visualização dos dados de um CEP"/>
   <img src="/screenshots/APP4.jpeg" width="200" title="Adicionando um endereço através do CEP"/>
 </p>
+
+## Setup
+Para executar este projeto siga os seguintes passos:
+- Entre na pasta do projeto
+- Execute o comando  
