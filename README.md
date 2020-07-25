@@ -4,19 +4,15 @@ Buscador de CEP
 
 ## Getting Started
 
-Este projeto busca endereços através dos CEPs cadastrados 
+Este projeto busca endereços através dos CEPs cadastrados.
 
+### Tecnologias envolvidas
+ - [MobX](https://pub.dev/packages/mobx)
+ - [GetIt](https://pub.dev/packages/get_it)
+ - [Dio](https://pub.dev/packages/dio)
+ - [Sqflite](https://pub.dev/packages/sqflite)
 
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## Screenshots
 <p float="left">
   <img src="/screenshots/APP1.PNG" width="200" title="Splash"/>
   <img src="/screenshots/APP2.PNG" width="200" title="Endereços já cadastrados"/> 
@@ -27,4 +23,10 @@ samples, guidance on mobile development, and a full API reference.
 ## Setup
 Para executar este projeto siga os seguintes passos:
 - Entre na pasta do projeto
-- Execute o comando  
+- Para executar em um dispositivo Android, 
+    - esteja certo que há um emulador configurado e ligado ou um dispositivo Android conectado ao computador
+    - execute o comando flutter run android 
+- Para executar em um dispositivo iOS 
+    - esteja certo que tem o XCode instalado no seu MacOS.
+    - ajuste o Team para o que estiver cadastrado no seu XCode
+    - execute o comando flutter run ios 
