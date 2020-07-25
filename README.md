@@ -6,7 +6,7 @@ Buscador de CEP
 
 Este projeto busca endereços através dos CEPs cadastrados.
 
-### Tecnologias envolvidas
+### Principais tecnologias envolvidas
  - [MobX](https://pub.dev/packages/mobx)
  - [GetIt](https://pub.dev/packages/get_it)
  - [Dio](https://pub.dev/packages/dio)
