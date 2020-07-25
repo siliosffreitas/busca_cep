@@ -26,7 +26,7 @@ Telas de fluxo alternativo
   <img src="/screenshots/APP5.PNG" width="200" title="Inicialmente o usuário não possui nenhum endereço cadastrado"/>
   <img src="/screenshots/APP6.PNG" width="200" title="Nenhum endereço encontrado para o CEP informado"/> 
   <img src="/screenshots/APP7.PNG" width="200" title="Alguns fluxos alternativos são cobertos pelo app, dentre eles Timeout, sem conexão com a internet e sem conexão com o servidor"/>
-  <img src="/screenshots/APP4.jpeg" width="200" title="Antes de cadastrar um CEP é verificado inicialmente a sua vailidade"/>
+  <img src="/screenshots/APP8.PNG" width="200" title="Antes de cadastrar um CEP é verificado inicialmente a sua vailidade"/>
 </p>
 
 ## Setup
