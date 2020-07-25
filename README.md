@@ -13,6 +13,15 @@ Este projeto busca endereços através dos CEPs cadastrados.
  - [Sqflite](https://pub.dev/packages/sqflite)
 
 ## Screenshots
+Principais telas
+<p float="left">
+  <img src="/screenshots/APP1.PNG" width="200" title="Splash"/>
+  <img src="/screenshots/APP2.PNG" width="200" title="Endereços já cadastrados"/> 
+  <img src="/screenshots/APP3.PNG" width="200" title="Visualização dos dados de um CEP"/>
+  <img src="/screenshots/APP4.jpeg" width="200" title="Adicionando um endereço através do CEP"/>
+</p>
+
+Telas de fluxo alternativo
 <p float="left">
   <img src="/screenshots/APP1.PNG" width="200" title="Splash"/>
   <img src="/screenshots/APP2.PNG" width="200" title="Endereços já cadastrados"/> 
