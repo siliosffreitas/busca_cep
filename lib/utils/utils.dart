@@ -69,16 +69,6 @@ formateWeekDay(int diaDaSemana) {
   }
 }
 
-formatDate_ddMMyyyy(int millisecondsSinceEpoch) {
-  DateTime date = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
-  return DateFormat('dd/MM/yyyy').format(date);
-}
-
-formatDate_ddMMyyyyHHmm(int millisecondsSinceEpoch) {
-  DateTime date = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
-  return DateFormat('dd/MM/yyyy kk:mm').format(date);
-}
-
 void messageError(context,
     {String message =
         "Algum erro ocorreu. Verifique sua internet e tente novamente mais tarde.",
